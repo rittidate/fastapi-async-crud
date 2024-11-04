@@ -1,7 +1,9 @@
 services:
   app:
-    build: .
-    container_name: "fastapi-async-crud"
+    build:
+      context: .
+      args:
+        - DEV=true
     volumes:
       - ./app:/app
     ports:
