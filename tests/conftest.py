@@ -1,5 +1,5 @@
 import pytest
-import uuid
+# import uuid
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
@@ -18,10 +18,15 @@ engine = create_engine(
 )
 
 # Create a sessionmaker to manage sessions
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+TestingSessionLocal = sessionmaker(
+                            autocommit=False,
+                            autoflush=False,
+                            bind=engine
+                        )
 
 # Create tables in the database
 Base.metadata.create_all(bind=engine)
+
 
 @pytest.fixture(scope="function")
 def db_session():
