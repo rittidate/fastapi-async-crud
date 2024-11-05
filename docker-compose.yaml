@@ -5,6 +5,7 @@ services:
       args:
         - DEV=true
     volumes:
-      - ./app:/app
+      - ./app:/src/app
+      - ./tests:/src/tests
     ports:
       - 8000:8000

@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from models import Base, Item # noqa
-from database import engine, SessionLocal # noqa
+from app import models
+from app.database import engine
 
-Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World2"}
+@app.get("/health")
+def root():
+    return {"message": "OK!!"}

@@ -4,8 +4,9 @@ LABEL maintainer="arraieot"
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
-COPY ./app /app
-WORKDIR /app
+COPY ./app /src/app
+COPY ./tests /src/tests
+WORKDIR /src
 
 ARG DEV=false
 RUN python -m venv /py && \
@@ -17,5 +18,4 @@ RUN python -m venv /py && \
     rm -rf /tmp
 
 ENV PATH="/py/bin:$PATH"
-
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
