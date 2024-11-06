@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List
 
 
-class ItemSchema(BaseModel):
+class ItemBaseSchema(BaseModel):
     id: int
     name: str
     description: str
@@ -28,11 +28,14 @@ class Status(Enum):
 
 class ItemResponse(BaseModel):
     Status: Status
-    Item: ItemSchema
+    Item: ItemBaseSchema
 
 class ItemResponseSuccess(BaseModel):
     Status: Status
 
+class GetItemResponse(BaseModel):
+    Status: Status
+    User: ItemBaseSchema
 
 class DeleteItemResponse(BaseModel):
     Status: Status
@@ -41,4 +44,4 @@ class DeleteItemResponse(BaseModel):
 class ListItemResponse(BaseModel):
     status: Status
     results: int
-    items: List[ItemSchema]
+    items: List[ItemBaseSchema]

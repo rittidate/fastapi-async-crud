@@ -33,9 +33,33 @@ async def create_item(payload: schemas.ItemCreate, db: AsyncSession = Depends(ge
             detail="An error occurred while creating the user.",
         ) from e
 
-    item_schema = schemas.ItemSchema.from_orm(new_item)
+    item_schema = schemas.ItemBaseSchema.from_orm(new_item)
 
     return schemas.ItemResponse(Status=schemas.Status.Success, Item=item_schema)
+
+@router.get(
+    "/{itemId}", status_code=status.HTTP_200_OK, response_model=schemas.GetItemResponse
+)
+async def get_item(itemId: int,  db: AsyncSession = Depends(get_db_session)):
+    result = await db.execute(select(models.Item).filter(models.Item.id == itemId))
+    item = result.scalars().first()
+
+    if not item:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"No Item with this id: `{itemId}` found",
+        )
+
+    try:
+        return schemas.GetItemResponse(
+            Status=schemas.Status.Success, User=schemas.ItemBaseSchema.model_validate(item)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An unexpected error occurred while fetching the user.",
+        ) from e
+
 
 @router.patch(
     "/{itemId}",
@@ -43,7 +67,7 @@ async def create_item(payload: schemas.ItemCreate, db: AsyncSession = Depends(ge
     response_model=schemas.ItemResponse,
 )
 async def update_item(
-    itemId: int, payload: schemas.ItemUpdate,  db: AsyncSession = Depends(get_db_session)
+    itemId: int, payload: schemas.ItemUpdate, db: AsyncSession = Depends(get_db_session)
 ):
     result = await db.execute(select(models.Item).filter(models.Item.id == itemId))
     item = result.scalars().first()
@@ -60,7 +84,7 @@ async def update_item(
 
         await db.commit()
         await db.refresh(item)
-        item_schema = schemas.ItemSchema.model_validate(item)
+        item_schema = schemas.ItemBaseSchema.model_validate(item)
         return schemas.ItemResponse(Status=schemas.Status.Success, Item=item_schema)
     except IntegrityError as e:
         await db.rollback()
