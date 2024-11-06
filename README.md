@@ -5,7 +5,7 @@
 Clone the project
 
 ```bash
-$ git clone https://github.com/rittidate/fastapi-async-crud.git
+$ git clone https://github.com/rittidate/fastapi-item-async-crud.git
 ```
 
 ## How To Run the Server

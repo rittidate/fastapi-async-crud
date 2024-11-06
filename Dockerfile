@@ -1,5 +1,5 @@
 FROM python:3.10-alpine3.13
-LABEL maintainer="arraieot"
+LABEL maintainer="rittidate"
 
 
 COPY ./requirements.txt /tmp/requirements.txt
