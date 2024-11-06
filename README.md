@@ -18,6 +18,21 @@ $ docker compose up
 
 This will spin up the server at `http://localhost:8000` with a local SQLite database.
 
+## Api usage examples
+To use api, use postman by import `fastapi-item-async-crud.postman_collection.json`
+
+
+To use api, use openapi by run the server:
+
+```shell
+$ docker compose up
+```
+
+This will spin up the server and see openapi docs `http://localhost:8000/docs`
+
+
+
+
 ## How To Run the Unit Tests
 To run the Unit Tests, from the root of the repo run
 ```shell
