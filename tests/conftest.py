@@ -19,6 +19,7 @@ def event_loop():
     yield loop
     loop.close()
 
+
 @pytest.fixture(scope="function", autouse=True)
 async def transactional_session():
     async with sessionmanager.session() as session:
@@ -42,5 +43,3 @@ async def client(db_session):
     app.dependency_overrides[get_db_session] = get_db_session_override
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://0.0.0.0") as client:
         yield client
-
-

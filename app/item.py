@@ -9,6 +9,7 @@ from app.database import get_db_session
 
 router = APIRouter()
 
+
 @router.post(
     "/", status_code=status.HTTP_201_CREATED, response_model=schemas.ItemResponse
 )
@@ -36,6 +37,7 @@ async def create_item(payload: schemas.ItemCreate, db: AsyncSession = Depends(ge
     item_schema = schemas.ItemBaseSchema.from_orm(new_item)
 
     return schemas.ItemResponse(Status=schemas.Status.Success, Item=item_schema)
+
 
 @router.get(
     "/{itemId}", status_code=status.HTTP_200_OK, response_model=schemas.GetItemResponse
@@ -98,6 +100,7 @@ async def update_item(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An error occurred while updating the item.",
         ) from e
+
 
 @router.delete(
     "/{itemId}",

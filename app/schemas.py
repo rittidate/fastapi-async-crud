@@ -13,13 +13,16 @@ class ItemBaseSchema(BaseModel):
         populate_by_name = True
         arbitrary_types_allowed = True
 
+
 class ItemCreate(BaseModel):
     name: str
     description: str
 
+
 class ItemUpdate(BaseModel):
     name: str
     description: str | None = None
+
 
 class Status(Enum):
     Success = "Success"
@@ -30,16 +33,20 @@ class ItemResponse(BaseModel):
     Status: Status
     Item: ItemBaseSchema
 
+
 class ItemResponseSuccess(BaseModel):
     Status: Status
+
 
 class GetItemResponse(BaseModel):
     Status: Status
     User: ItemBaseSchema
 
+
 class DeleteItemResponse(BaseModel):
     Status: Status
     Message: str
+
 
 class ListItemResponse(BaseModel):
     status: Status

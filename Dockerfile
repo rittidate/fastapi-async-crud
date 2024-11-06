@@ -6,6 +6,7 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /src/app
 COPY ./tests /src/tests
+COPY ./.flake8 /src/.flake8
 WORKDIR /src
 
 ARG DEV=false

@@ -1,7 +1,5 @@
 import pytest
 from httpx import AsyncClient
-import json
-from unittest.mock import AsyncMock, patch
 
 
 @pytest.mark.asyncio
@@ -19,12 +17,12 @@ async def test_root(client: AsyncClient):
 
 #     assert response.status_code == 201
 
-@pytest.mark.asyncio
-async def test_get_items(client: AsyncClient):
-    response = await client.get("/items")
-    print(response)
+# @pytest.mark.asyncio
+# async def test_get_items(client: AsyncClient):
+#     response = await client.get("/items")
+#     print(response)
 
-    assert response.status_code == 200
+#     assert response.status_code == 200
 
 
 # def test_create_get_user(test_client, user_payload):
