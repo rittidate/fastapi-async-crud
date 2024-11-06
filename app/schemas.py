@@ -31,7 +31,7 @@ class ItemResponse(BaseModel):
 
 class GetItemResponse(BaseModel):
     Status: Status
-    User: ItemBaseSchema
+    Item: ItemBaseSchema
 
 
 class ItemUpdate(BaseModel):

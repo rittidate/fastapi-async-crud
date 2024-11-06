@@ -39,5 +39,14 @@ async def client(db_session):
 
 
 @pytest.fixture()
+def item_payload():
+    return {
+        "id": 1,
+        "name": "item 1",
+        "description": "item description"
+    }
+
+
+@pytest.fixture()
 def not_found_item_id():
     return 111
