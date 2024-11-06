@@ -51,7 +51,7 @@ async def update_item(
     if item is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"No Item with this id: `{item}` found",
+            detail=f"No Item with this id: `{itemId}` found",
         )
 
     try:
