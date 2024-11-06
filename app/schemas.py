@@ -19,11 +19,6 @@ class ItemCreate(BaseModel):
     description: str
 
 
-class ItemUpdate(BaseModel):
-    name: str
-    description: str | None = None
-
-
 class Status(Enum):
     Success = "Success"
     Failed = "Failed"
@@ -34,13 +29,14 @@ class ItemResponse(BaseModel):
     Item: ItemBaseSchema
 
 
-class ItemResponseSuccess(BaseModel):
-    Status: Status
-
-
 class GetItemResponse(BaseModel):
     Status: Status
     User: ItemBaseSchema
+
+
+class ItemUpdate(BaseModel):
+    name: str
+    description: str | None = None
 
 
 class DeleteItemResponse(BaseModel):
