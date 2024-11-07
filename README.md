@@ -19,10 +19,10 @@ $ docker compose up
 This will spin up the server at `http://localhost:8000` with a local SQLite database.
 
 ## Api usage examples
-To use api, use postman by import `fastapi-item-async-crud.postman_collection.json`
+To test api, using postman by import `fastapi-item-async-crud.postman_collection.json`
 
 
-To use api, use openapi by run the server:
+To test api, using openapi by run the server:
 
 ```shell
 $ docker compose up
